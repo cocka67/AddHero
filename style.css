@@ -78,15 +78,25 @@ input:hover {
     color: #e2dedb;
 }
 
-#heroesContainer {
+.con{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#heroesContainer{
+    width: 400px;
+}
+
+#formContainer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: relative;
-    width: 500px;
-    margin: 250px auto 100px auto;
-    flex-wrap: wrap;
 
+    width: 500px;
+    height: 152px;
+
+    flex-wrap: wrap;
 }
 
 .hero-card {

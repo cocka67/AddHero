@@ -1,46 +1,33 @@
 document.getElementById("submit").addEventListener("click", addHero);
 
 let heroes = [["Axe", "Tank"], ["Crystal Maiden", "Support"]];
-let heroNames = ["Axe", "Crystal Maiden"]
-let heroClasses = ["Tank", "Support"]
-
-let newHeroName = nameInput.value;
-let newHeroClass = heroClass.value;
-
-let heroesContainer = document.getElementById("heroesContainer");
-// Находим поле ввода
-let nameInput = document.getElementById("heroName");
-// Значение поля ввода хранится в value — и его можно достать таким образом:
-console.log(nameInput.value);
-
-let heroClass = document.getElementById("heroClass");
-console.log(heroClass.value);
 
 
 // Функция, которая отображает героев на странице
 
-function displayHeroes() {
+function displayHeroes()  {
     // Достаём контейнер, в который будем добавлять новые карточки героев
-    let heroesContainer = document.getElementById("heroesContainer");
+  let heroesContainer = document.getElementById("heroesContainer");
 
     // Очищаем текущее содержимое
-    heroesContainer.innerHTML = '';
+  heroesContainer.innerHTML = ''; 
 
-    // С помощью цикла проходимся по массиву имён героев
+    // С помощью цикла проходимся по массиву героев
     // (переменная i будет равняться индексу элемента в массиве)
-    for (let i = 0; i < heroNames.length; i++) {
+  for (let i = 0; i < heroes.length; i++) {
         // Создаём элемент, в который будем добавлять информацию о герое
-        let heroDiv = document.createElement("div");
-        heroDiv.className = "hero-card";
+    let heroDiv = document.createElement("div");
+    heroDiv.className = "hero-card";
 
         // Записываем в созданный элемент разметку, подставляя необходимые данные
-        // (данные достаём из массивов по индексу – если не помнишь, как это делать,
-        // перечитай наш урок про массивы)
-        heroDiv.innerHTML = `<h3>${heroNames[i]}</h3><p>${heroClasses[i]}</p>`;
+
+        // Так как элемент массива heroes[i] и есть массив - hero = ["имя", "класс"],
+        // нужно взять отдельно имя и класс по индексу массива: [0]- имя [1]- класс
+    heroDiv.innerHTML = `<h3>${heroes[i][0]}</h3><p>${heroes[i][1]}</p>`;
 
         // Добавляем карточку героя в контейнер
-        heroesContainer.appendChild(heroDiv);
-    }
+    heroesContainer.appendChild(heroDiv);
+  }
 }
 
 function addHero() {
@@ -48,16 +35,18 @@ function addHero() {
     let nameInput = document.getElementById("heroName");
     let classInput = document.getElementById("heroClass");
 
-    /* Кидаем новые данные из инпутов в массивы с именами и классами */
-    heroNames.push(nameInput.value);
-    heroClasses.push(classInput.value);
-
-    /* 
-        Используем функцию, которую мы подготовили в прошлом уроке, 
-        чтобы обновить список героев на странице 
-    */
+    // Создаём массив с новым персонажем
+    let newHero = [nameInput.value, classInput.value];
+    
+    // Кидаем нового персонажа в массив с героями на нашем сайте
+    heroes.push(newHero);
+    
+    // Используем функцию, которую мы подготовили в прошлом уроке, 
+    // чтобы обновить список героев на странице 
     displayHeroes();
 
+    // Очищаем поля ввода, чтобы пользователю было удобнее 
+    // сразу иметь возможность вводить данные нового персонажа 
     nameInput.value = "";
     classInput.value = "";
 }
